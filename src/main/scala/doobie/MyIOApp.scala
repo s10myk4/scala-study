@@ -18,9 +18,8 @@ trait MyIOApp extends IOApp {
     )
   } yield xa
 
-  protected def asset(f: => Boolean): ExitCode = {
-    if (f) ExitCode.Success
-    else ExitCode.Error
+  protected def asset(f: => Boolean): IO[ExitCode] = {
+    IO.pure(if (f) ExitCode.Success else ExitCode.Error)
   }
 
 }
