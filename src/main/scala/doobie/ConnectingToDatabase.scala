@@ -24,7 +24,7 @@ object ConnectingToDatabase extends MyIOApp {
     val anotherProgram = sql"select power(5, 2)".query[Int].unique
     val q4 = transactor.use((oneProgram, anotherProgram).mapN(_ + _).transact[IO]).unsafeRunSync()
 
-    asset(q1 == 42 && q2 == 42 && q3 == (42, 25) && q4 == 67)
+    assert(q1 == 42 && q2 == 42 && q3 == (42, 25) && q4 == 67)
   }
 
 }
